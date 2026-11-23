@@ -1,0 +1,4 @@
+# Transient runtime files
+*.tmp
+*.log
+.DS_Store

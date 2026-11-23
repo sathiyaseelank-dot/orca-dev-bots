@@ -1,0 +1,6 @@
+Optimize the UI and UX of safar-travel:
+1. Work in a new branch (e.g. `feature/ui-ux-optimization`).
+2. Audit the current UI/UX: review mobile responsiveness, touch targets, contrast/accessibility, visual hierarchy, micro-interactions, typography, and layout spacing.
+3. Implement clean, modern UI/UX enhancements across key flows (Vehicle Catalog, Route Estimator, 3-Step Checkout, Digital E-ticket, Driver Chat Drawer).
+4. Run validation and builds (e.g. `npm run build` and `python3 browser.py` or existing test scripts) to ensure everything compiles and all tests pass with zero regressions.
+5. Commit your changes and open a pull request on GitHub against `main`. You own the pull request you open until it is ready to merge: watch its checks and reviews, fix what fails or is asked, then report back.
