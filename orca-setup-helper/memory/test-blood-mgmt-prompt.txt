@@ -1,0 +1,10 @@
+Project Goal: Build a full-stack Blood Group Management System.
+
+Key Requirements:
+1. Donor Management: Registration, contact details, blood group (A+, A-, B+, B-, AB+, AB-, O+, O-), location, and donation history/eligibility.
+2. Blood Stock Inventory: Live tracking of available blood units by group, status, and expiration tracking.
+3. Emergency Requests & Matching: Hospitals/patients can request urgent blood units, match compatible blood groups, and deduct from stock upon fulfillment.
+4. Technical Output:
+   - Create docs/SPEC.md (architecture, schema, REST APIs, UI layout).
+   - Create docs/ACCEPTANCE_CRITERIA.md (testable AC-01, AC-02, etc.).
+5. Next Step: Hand off the implementation to dev-bot using Orca orchestration once the specification is drafted.

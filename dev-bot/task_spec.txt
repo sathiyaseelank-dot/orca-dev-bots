@@ -1,0 +1,7 @@
+Implement Blood Group Management System
+Read docs/SPEC.md and docs/ACCEPTANCE_CRITERIA.md in the repository.
+Implement the fullstack application in this worktree branch according to the architecture specification and ensure all acceptance criteria AC-01 through AC-10 are fully satisfied.
+Scaffold dependencies, setup configs, implement backend models, routes, controllers, and frontend UI components.
+Run self-checks, builds, and test suites to verify that both backend and frontend compile, run, and pass cleanly.
+Commit the changes on the branch and report with worker_done summarizing the implementation, branch name, and test run output.
+Placement: this machine (local), set up on this machine.
