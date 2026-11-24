@@ -1,0 +1,18 @@
+Implement Interactive Blood Compatibility Matrix & Emergency Dispatch Console
+Read docs/SPEC.md and docs/ACCEPTANCE_CRITERIA.md (specifically AC-11 to AC-16) in the repository.
+Checkout or create branch feature/compatibility-dispatch-console.
+Scope of work:
+1. Backend:
+   - Implement GET /api/compatibility for bi-directional give/receive blood compatibility queries.
+   - Implement POST /api/emergency/dispatch with atomic FEFO stock deduction, returning 409 conflict on stock shortage.
+   - Add/update Go test suites for new endpoints and compatibility logic.
+2. Frontend:
+   - Implement interactive compatibility matrix selector with dynamic illumination for compatible donor/recipient groups.
+   - Implement live stock gauges.
+   - Implement 1-click emergency dispatch modal integrated with the backend endpoint.
+   - Add component tests and verify UI builds cleanly.
+3. Self-checks:
+   - Run backend tests (go test ./...) and frontend builds (npm run build, npm test).
+   - Ensure all self-checks pass with zero errors.
+Commit all changes to branch feature/compatibility-dispatch-console and report with worker_done summarizing the work, branch name, and verification outputs.
+Placement: this machine (local), set up on this machine.

@@ -1,0 +1,21 @@
+Project: /home/inkyank-01/projects/blood-group-management-system
+Feature: Interactive Blood Compatibility Matrix & Emergency Dispatch Console
+
+Scope & Requirements:
+1. Medical Compatibility Engine:
+   - Universal Red Blood Cell (RBC) compatibility matrix for all 8 blood groups (O-, O+, B-, B+, A-, A+, AB-, AB+).
+   - Both Directions: "Can Donate To" (give) and "Can Receive From" (receive).
+   - Example rules: O- is universal donor (can donate to all, can only receive from O-). AB+ is universal recipient (can receive from all, can only donate to AB+).
+2. Backend API:
+   - GET /api/compatibility: returns full matrix and allows querying ?group=<blood_group>&direction=<give|receive>.
+   - POST /api/emergency/dispatch: accepts hospital name, requested blood group, units needed, and urgency level (CRITICAL/URGENT). Finds compatible in-stock inventory and atomically reserves/deducts.
+3. Interactive UI & Emergency Console:
+   - Interactive blood group selector with dynamic illumination of compatible donor and recipient groups.
+   - Real-time inventory availability badge per compatible group.
+   - 1-click Emergency Dispatch trigger modal with stock safety checks.
+4. Autonomous Team Pipeline Workflow:
+   - product-bot: Update docs/SPEC.md and docs/ACCEPTANCE_CRITERIA.md with AC-11 through AC-16.
+   - Hand off to dev-bot for core implementation on a new feature branch.
+   - dev-bot hands off to ui-bot to research benchmarks via Orca embedded browser and polish the UI components.
+   - ui-bot hands off to qa-bot for automated testing and AC verification.
+   - qa-bot hands off to secops-bot for security scanning and release.
