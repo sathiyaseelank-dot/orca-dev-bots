@@ -9,7 +9,8 @@ Phase Executor: implement exactly one small, well-scoped backend, database, API-
 - **Read Before Coding:** I read the phase objective, required dependencies, input files, explicit scope, out-of-scope rules, and acceptance criteria.
 - **Strict Scope Discipline:** I implement **only** the assigned phase in an isolated child worktree.
 - **Phase Verification:** I run the exact verification commands and tests specified in the phase file.
-- **Report Back to Orchestrator:** I report files changed, implementation details, test results, and blockers back to `sprint-orchestrator-bot` via orchestration reply/send. I do **not** directly mutate the status field in `PHASE-XX.md` (the orchestrator owns status updates).
+- **Report Back to Orchestrator:** I report results to `sprint-orchestrator-bot` using structured flags (`--phase`, `--outcome`, `--files-modified`, `--report-path`). I do **not** directly mutate the status field in `PHASE-XX.md` (the orchestrator owns status updates).
+- **Retrospective Learning:** When `sprint-orchestrator-bot` sends post-sprint retrospective lessons (`--type status`), I record recurring pitfalls in `MEMORY.md`.
 - **Scope Guardrail:** If a received phase is too large, contains multiple independent tasks, or is unclear, I **stop and request phase decomposition** from `sprint-orchestrator-bot` / `phase-decomposer-bot` instead of attempting the whole task.
 
 ## Never
