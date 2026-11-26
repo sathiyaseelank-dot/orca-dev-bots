@@ -1,0 +1,25 @@
+Execute SPRINT-01/PHASE-02: Eligibility-Enforced Appointment Booking & Listing API
+Read docs/phases/SPRINT-01/PHASE-02.md and docs/sprints/SPRINT-01.md thoroughly before making any edits.
+Verify you are on branch product-bot/sanddollar (containing SPRINT-01/PHASE-01 commit cf1195cefccd1cfedef2af2810bd8022fdc383d4).
+Check if the phase is small, well-scoped, and clear; if it is too large, contains multiple independent tasks, or is unclear/blocked, stop and report so it can be decomposed.
+
+Scope & Rules:
+1. Implement ONLY SPRINT-01 / PHASE-02 on branch product-bot/sanddollar:
+   - Implement CreateAppointment (POST /api/appointments) and ListAppointments (GET /api/appointments) in backend/handlers/appointments.go per docs/phases/SPRINT-01/PHASE-02.md.
+   - Register routes in backend/handlers/router.go per docs/phases/SPRINT-01/PHASE-02.md.
+   - Add tests in backend/handlers/appointments_test.go (or handlers_test.go) per docs/phases/SPRINT-01/PHASE-02.md.
+2. Out-of-scope rules (DO NOT VIOLATE):
+   - Do NOT implement appointment completion or cancellation endpoints (covered in SPRINT-02/PHASE-01).
+   - Do NOT modify frontend files.
+   - Do NOT edit docs/phases/SPRINT-01/PHASE-02.md Completion Status directly (sprint-orchestrator-bot owns phase status).
+   - Do NOT push or merge directly to main; commit on product-bot/sanddollar.
+3. Verification:
+   - Run: cd backend && go test -v ./handlers/... -run Appointment && go test ./...
+   - Also run any additional verification commands listed in docs/phases/SPRINT-01/PHASE-02.md.
+   - Ensure all tests pass cleanly.
+4. Commit your changes on product-bot/sanddollar and report with worker_done (including --outcome succeeded/failed and --files-modified) containing:
+   - Outcome (DONE or FAILED)
+   - Branch name and new commit SHA
+   - Exact list of files modified/created
+   - Exact verification commands run and their output summary
+Placement: this machine (local), this Run already works there.

@@ -1,0 +1,16 @@
+--phase: SPRINT-01/PHASE-02
+--outcome: PASS
+--files-modified: none
+--report-path: /home/inkyank-01/.orca/bots/qa-bot/memory/sprint-01-phase-02-report.md
+
+### Phase Verification Summary: SPRINT-01/PHASE-02
+- **Commit Verified:** `product-bot/sanddollar` @ `fc19552245c057eab774c61ea66f0393e5f04c16`
+- **Diff Inspection:**
+  - `backend/handlers/appointments.go`: Implements `CreateAppointment` (`POST /api/appointments` with `400`, `404`, `409` cooldown & duplicate-`SCHEDULED` checks, `201` with preloaded `Donor`) and `ListAppointments` (`GET /api/appointments` with `status`, `blood_group`, and case-insensitive `search` across donor name & appointment location).
+  - `backend/handlers/router.go`: Registers `POST /api/appointments` and `GET /api/appointments`.
+  - `backend/handlers/appointments_test.go`: Covers `201` eligible & future-eligible bookings, `409` duplicate booking, `409` 56-day cooldown violation, `404` unknown donor, `400` missing/invalid inputs, and `GET /api/appointments` individual + combined filters.
+  - **Out-of-Scope Compliance:** Verified no completion/cancellation endpoints added, no frontend changes, and `PHASE-02.md` untouched.
+- **Test & Build Output (`cd backend && go test -count=1 -v ./handlers/... -run Appointment && go test -count=1 ./... && go build ./...`):**
+  - `./handlers/... -run Appointment`: PASS (`TestAppointmentBookingAndValidation` + `TestListAppointmentsFiltering`, 0.011s)
+  - `go test -count=1 ./...`: PASS (`backend/db` 0.090s, `backend/handlers` 0.036s — no regressions)
+  - `go build ./...`: exit code 0

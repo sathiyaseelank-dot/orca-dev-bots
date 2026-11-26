@@ -1,0 +1,16 @@
+--phase: SPRINT-01/PHASE-01
+--outcome: PASS
+--files-modified: none
+--report-path: /home/inkyank-01/.orca/bots/qa-bot/memory/sprint-01-phase-01-report.md
+
+### Phase Verification Summary: SPRINT-01/PHASE-01
+- **Commit Verified:** `product-bot/sanddollar` @ `cf1195cefccd1cfedef2af2810bd8022fdc383d4`
+- **Diff Inspection:**
+  - `backend/models/models.go`: `Appointment` struct matches `docs/phases/SPRINT-01/PHASE-01.md` (`ID`, `DonorID`, `Donor` foreignKey, `ScheduledAt`, `Location`, `Notes`, `Status` default `'SCHEDULED'`, `CreatedAt`, `UpdatedAt`, and indexes on `donor_id`, `scheduled_at`, `status`).
+  - `backend/db/database.go`: Registers `&models.Appointment{}` in `AutoMigrate`.
+  - `backend/db/database_test.go`: Covers both `:memory:` schema/indexes/foreign-key validation and migration on an existing SQLite DB.
+  - **Out-of-Scope Compliance:** Verified no handlers/routes added, no existing model schemas modified, and `PHASE-01.md` left untouched.
+- **Test & Build Output (`cd backend && go test -count=1 -v ./... && go build ./...`):**
+  - `backend/db`: PASS (`TestInitDatabase_MigratesAppointmentsTable`, `TestInitDatabase_ExistingSQLiteDatabase` in 0.091s)
+  - `backend/handlers`: PASS (12/12 existing tests AC-01..AC-09, AC-11..AC-13 in 0.027s — no regressions)
+  - `go build ./...`: exit code 0

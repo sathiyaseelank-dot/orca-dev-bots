@@ -1,0 +1,24 @@
+Execute SPRINT-01/PHASE-01: Appointment Data Model & SQLite Auto-Migration
+Read docs/phases/SPRINT-01/PHASE-01.md and docs/sprints/SPRINT-01.md thoroughly before making any edits.
+Check if the phase is small, well-scoped, and clear; if it is too large, contains multiple independent tasks, or is unclear/blocked, stop and report so it can be decomposed.
+
+Scope & Rules:
+1. Implement ONLY SPRINT-01 / PHASE-01 in this isolated child worktree branch:
+   - Implement the Appointment GORM model in backend/models/models.go per docs/phases/SPRINT-01/PHASE-01.md.
+   - Register &models.Appointment{} in AutoMigrate inside backend/db/database.go per docs/phases/SPRINT-01/PHASE-01.md.
+   - Add any unit/migration tests specified in docs/phases/SPRINT-01/PHASE-01.md.
+2. Out-of-scope rules (DO NOT VIOLATE):
+   - Do NOT implement HTTP handlers or router endpoints (covered in SPRINT-01/PHASE-02).
+   - Do NOT modify existing Donor, BloodUnit, DonationHistory, or EmergencyRequest schemas.
+   - Do NOT edit docs/phases/SPRINT-01/PHASE-01.md Completion Status directly.
+   - Do NOT push or commit directly to main; keep all commits on this isolated worktree feature branch.
+3. Verification:
+   - Run: cd backend && go test ./...
+   - Also run any other verification commands listed in docs/phases/SPRINT-01/PHASE-01.md.
+   - Ensure all tests pass cleanly.
+4. Commit your changes on this worktree branch and report with worker_done containing:
+   - Outcome (DONE or FAILED)
+   - Exact branch name and commit SHA
+   - Exact list of files modified
+   - Exact verification commands run and their output summary
+Placement: this machine (local), set up on this machine.

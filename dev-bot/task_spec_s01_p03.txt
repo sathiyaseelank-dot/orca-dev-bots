@@ -1,0 +1,24 @@
+Execute SPRINT-01/PHASE-03: Frontend Appointment API Client Helpers
+Read docs/phases/SPRINT-01/PHASE-03.md, docs/sprints/SPRINT-01.md, and backend/handlers/appointments.go thoroughly before making any edits.
+Verify you are on branch product-bot/sanddollar (containing SPRINT-01/PHASE-02 commit fc19552245c057eab774c61ea66f0393e5f04c16).
+Check if the phase is small, well-scoped, and clear; if it is too large, contains multiple independent tasks, or is unclear/blocked, stop and report so it can be decomposed.
+
+Scope & Rules:
+1. Implement ONLY SPRINT-01 / PHASE-03 on branch product-bot/sanddollar:
+   - Add getAppointments(params = {}) and createAppointment(data) to frontend/src/api.js matching the /api/appointments contract in backend/handlers/appointments.go and docs/phases/SPRINT-01/PHASE-03.md.
+   - Add/update API client unit tests if specified in docs/phases/SPRINT-01/PHASE-03.md.
+2. Out-of-scope rules (DO NOT VIOLATE):
+   - Do NOT implement completeAppointment or cancelAppointment yet (covered in SPRINT-02/PHASE-02).
+   - Do NOT build UI components or edit App.jsx / Navbar.jsx (covered in SPRINT-01/PHASE-05).
+   - Do NOT edit docs/phases/SPRINT-01/PHASE-03.md Completion Status directly (sprint-orchestrator-bot owns phase status).
+   - Do NOT push or merge directly to main; commit on product-bot/sanddollar.
+3. Verification:
+   - Run: cd frontend && npm test && npm run build
+   - Also run any additional verification commands listed in docs/phases/SPRINT-01/PHASE-03.md.
+   - Ensure all tests and build pass cleanly.
+4. Commit your changes on product-bot/sanddollar and report with worker_done (including --outcome succeeded/failed and --files-modified) containing:
+   - Outcome (DONE or FAILED)
+   - Branch name and new commit SHA
+   - Exact list of files modified/created
+   - Exact verification commands run and their output summary
+Placement: this machine (local), this Run already works there.
