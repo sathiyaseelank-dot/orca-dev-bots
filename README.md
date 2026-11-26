@@ -9,11 +9,11 @@ A reusable multi-agent software engineering team for the Orca IDE (Stably) that 
 | **Product Lead** | `bot:product-bot` | `product-bot/` | High-level product requirements, user journeys, constraints, and product-level ACs (`docs/PRD.md`). |
 | **Sprint Planner** | `bot:sprint-planner-bot` | `sprint-planner-bot/` | Converts `docs/PRD.md` into cohesive, runnable feature sprints (`docs/sprints/SPRINT-XX.md`). |
 | **Phase Decomposer** | `bot:phase-decomposer-bot` | `phase-decomposer-bot/` | Breaks each sprint into small, single-objective sequential phase files (`docs/phases/SPRINT-XX/PHASE-XX.md`). |
-| **Sprint Orchestrator** | `bot:sprint-orchestrator-bot` | `sprint-orchestrator-bot/` | Tracks sprint/phase lifecycle (`PENDING → READY → IN_PROGRESS → REVIEW → PASS`), dispatches one phase at a time, stops on failures. |
-| **Phase Executor (Dev)** | `bot:dev-bot` | `dev-bot/` | Executes one assigned phase at a time in an isolated worktree; never implements future phases. |
-| **UI Research & Design** | `bot:ui-research-bot` | `ui-research-bot/` | Works *before* UI implementation: benchmarks similar websites in Orca browser and writes `docs/ui-specs/PHASE-XX-UI-SPEC.md`. |
-| **UI Implementer** | `bot:ui-bot` | `ui-bot-2/` | Implements/refines production UI components from the approved UI spec, reusing design tokens and preserving logic. |
-| **UI Visual Auditor** | `bot:ui-review-bot` | `ui-review-bot-2/` | Independent visual reviewer: inspects screenshots across desktop/tablet/mobile against the UI spec and grants visual sign-off. |
+| **Sprint Orchestrator** | `bot:sprint-orchestrator-bot` | `sprint-orchestrator-bot/` | Sole writer of phase status (`PENDING → PASS`), dispatches 1 phase at a time, enforces `MAX_RETRIES=3` & `HOTFIX` fast-path. |
+| **Phase Executor (Dev)** | `bot:dev-bot` | `dev-bot/` | Executes `DATABASE`, `BACKEND`, `API_CLIENT`, `INTEGRATION`, and backend `HOTFIX` phases one at a time in isolated worktrees. |
+| **UI Research & Design** | `bot:ui-research-bot` | `ui-research-bot/` | Works *before* UI implementation: benchmarks sites in Orca browser, maintains `docs/DESIGN_SYSTEM.md`, writes `docs/ui-specs/PHASE-XX-UI-SPEC.md`. |
+| **UI Implementer** | `bot:ui-bot` | `ui-bot-2/` | Owns `UI_IMPLEMENTATION` phases solo from `docs/DESIGN_SYSTEM.md` + approved UI spec, preserving APIs & business logic. |
+| **UI Visual Auditor** | `bot:ui-review-bot` | `ui-review-bot-2/` | Independent visual reviewer: inspects screenshots across desktop/tablet/mobile against `docs/DESIGN_SYSTEM.md` & the UI spec. |
 | **QA Verifier** | `bot:qa-bot` | `qa-bot/` | Runs phase-level verification (`PASS`/`FAIL`/`BLOCKED`) and sprint-level end-to-end runnable feature verification. |
 | **Security & DevOps** | `bot:secops-bot` | `secops-bot/` | Secret scanning, vulnerability audit, GitHub PR lifecycle, CI monitoring, and deployments. |
 
@@ -22,28 +22,28 @@ A reusable multi-agent software engineering team for the Orca IDE (Stably) that 
 ## Required Workflow
 
 ```text
-User's Product Idea
+User's Product Idea                         [Small Bugfix / Hotfix Fast-Track]
+   │                                                       │
+   ▼                                                       │
+Product Bot (docs/PRD.md)                                  │
+   │                                                       │
+   ▼                                                       │
+Sprint Planning Bot (docs/sprints/SPRINT-XX.md)            │
+   │                                                       │
+   ▼                                                       │
+Phase Decomposition Bot (docs/phases/SPRINT-XX/PHASE-XX.md)│
+   │                                                       │
+   ▼                                                       ▼
+Sprint Orchestrator (Sole status writer; MAX_RETRIES = 3; 1 phase at a time)
    │
-   ▼
-Product Bot (docs/PRD.md)
-   │
-   ▼
-Sprint Planning Bot (docs/sprints/SPRINT-XX.md)
-   │
-   ▼
-Phase Decomposition Bot (docs/phases/SPRINT-XX/PHASE-XX.md)
-   │
-   ▼
-Sprint Orchestrator (Dispatches 1 eligible phase at a time)
-   │
-   ├──[Backend / DB Phase]─────────────────────────────────────┐
+   ├──[Backend / DB / Hotfix Phase]────────────────────────────┐
    │                                                           ▼
    │                                                        Dev Bot (1 phase)
    │                                                           │
-   └──[UI Phase]──▶ UI Research Bot (docs/ui-specs/)           │
-                         │                                     │
+   └──[UI Phase]──▶ UI Research Bot (docs/DESIGN_SYSTEM.md     │
+                         │           & docs/ui-specs/)         │
                          ▼                                     │
-                    Dev Bot + UI Bot (Implements UI per spec)  │
+                    UI Bot (Solo UI implementation per spec)   │
                          │                                     │
                          ▼                                     │
                     UI Review Bot (Visual sign-off)            │
